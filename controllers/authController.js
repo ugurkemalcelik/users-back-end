@@ -131,13 +131,11 @@ const forgotPassword = expressAsyncHandler(async (req,res,next) => {
 
     const resetPasswordToken = user.getResetPasswordTokenFromUser();
 
-    await user.save();
-
-    const resetPasswordUri = `http://localhost:5000/api/auth/resetPasswordToken?resetPasswordToken=${resetPasswordToken}`;
+    await user.save();    
 
     const htmlTemplate = `
         <h3>Reset Your Password</h3>
-        <p>This <a href="${resetPasswordUri}" target="blank_">link</a> will expire in 1 hour</p>    
+        <p>This is your reset password token = ${resetPasswordToken} will expire in 1 hour</p>    
     `;
 
     try {
